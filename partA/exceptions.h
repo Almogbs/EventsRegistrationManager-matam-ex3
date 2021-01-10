@@ -3,14 +3,17 @@
 #include <iostream>
 
 namespace mtm {
+    /** Parent Exception */
+    class Exception : public std::exception {};
 
-    class Exception : public std::exception {
-    };
-    class InvalidDate : public Exception {
-    };
-    class NegativeDays : public Exception {
-    };
+    /** Exceptions for DateWrap.h */
+    class InvalidDate : public Exception {};
+    class NegativeDays : public Exception {};
 
+    /** Exceptions for base_event.h */
+    class InvalidStudent : public Exception {};
+
+    
 
 }
 
