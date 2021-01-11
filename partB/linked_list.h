@@ -7,7 +7,7 @@ namespace mtm {
     template <class T>
     struct Node{
         Node<T>* next;
-        T element;
+        T* element;
     };
 
 
@@ -23,8 +23,8 @@ namespace mtm {
         bool contains(const T& element);
         void insert(const T& element);
         void removeElement(const T& element);
-        T getFirst();
-        T getNext();
+        T* getFirst();
+        T* getNext();
     };
 }
 
@@ -43,13 +43,14 @@ LinkedList<T>::LinkedList(const LinkedList<T>& list){
         return;
     }
     head = new Node<T>;
-    head->element = list.head->element;
+    head->element = new T(*list.head->element);
+    head->next = NULL;
     Node<T>* to_add = list.head->next;
     Node<T>* temp_head_ptr = head;
 
     while(to_add){
         Node<T>* new_element = new Node<T>;
-        new_element->element = to_add->element;
+        new_element->element = new T(*to_add->element);
         new_element->next = NULL;
         temp_head_ptr->next = new_element;
         temp_head_ptr = temp_head_ptr->next;
@@ -63,6 +64,7 @@ LinkedList<T>::~LinkedList(){
     {
         Node<T>* to_delete = head;
         head = head->next;
+        delete to_delete->element;
         delete to_delete;
     }
 }
@@ -80,9 +82,12 @@ int LinkedList<T>::size(){
 
 template<class T>
 bool LinkedList<T>::contains(const T& element){
+    if(head == NULL){
+        return false;
+    }
     Node<T>* temp = head;
     while(temp){
-        if(temp->element == element){
+        if(*temp->element == element){
             return true;
         }
         temp = temp->next;
@@ -94,23 +99,23 @@ template<class T>
 void LinkedList<T>::insert(const T& element){
     if(head == NULL){
         head = new Node<T>;
-        head->element = element;
+        head->element = new T(element);
         head->next = NULL;
         return;
     }
-    if(element < head->element){
+    if(element < *head->element){
         Node<T>* new_head = new Node<T>;
-        new_head->element = element;
+        new_head->element = new T(element);
         new_head->next = head;
         head = new_head;
         return;
     }
     Node<T>* temp = head;
-    while(temp->next && element > temp->next->element){
+    while(temp->next && element > *temp->next->element){
             temp = temp->next;
     }
     Node<T>* to_add = new Node<T>;
-    to_add->element = element;
+    to_add->element = new T(element);
     to_add->next = temp->next;
     temp ->next = to_add;
     return;
@@ -122,13 +127,14 @@ void LinkedList<T>::removeElement(const T& element){
     if(!temp){
         return;
     }
-    if(temp->element == element)
+    if(*temp->element == element)
     {
         head = head->next;
+        delete temp->element;
         delete temp;
         return;
     }
-    while(temp->next && temp->next->element != element)
+    while(temp->next && *temp->next->element != element)
     {
         temp = temp->next;
     }
@@ -138,29 +144,33 @@ void LinkedList<T>::removeElement(const T& element){
     }
     Node<T>* to_delete = temp->next;
     temp->next = to_delete->next;
+    delete to_delete->element;
     delete to_delete;
     return;
 }
 
 template<class T>
-T LinkedList<T>::getFirst(){
+T* LinkedList<T>::getFirst(){
+    if(!head){
+        return NULL;
+    }
     iterator = head;
     return head->element;
 }
 
 template<class T>
-T LinkedList<T>::getNext(){
+T* LinkedList<T>::getNext(){
     if(!iterator->next){
-        return 0;
+        return NULL;
     }
     iterator = iterator->next;
     return iterator->element;
 }
 
-#define FOREACH(type, iterator, listname) \
-    for(type iterator = (type) listname.getFirst() ; \
+#define LL_FOREACH(type, iterator, listname) \
+    for(type iterator = listname->getFirst() ; \
         iterator ;\
-        iterator = listname.getNext())
+        iterator = listname->getNext())
 
 
 

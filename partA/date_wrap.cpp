@@ -6,18 +6,23 @@ DateWrap::DateWrap(int in_day, int in_month, int in_year){
     if(!isValidDate(in_day, in_month, in_year)){
         throw mtm::InvalidDate();
     }
-
     tday = in_day, tmonth = in_month, tyear = in_year;
     date = dateCreate(tday, tmonth, tyear);
-    }
+}
 
-    DateWrap::DateWrap(const DateWrap& date1){
-        tday = date1.tday, tmonth = date1.tmonth, tyear = date1.tyear;
-        date = dateCopy(date1.date);
+DateWrap::DateWrap(const DateWrap& date1){
+    tday = date1.tday, tmonth = date1.tmonth, tyear = date1.tyear;
+    date = dateCopy(date1.date);
 }
 
 DateWrap::~DateWrap(){
     dateDestroy(date);
+}
+
+DateWrap& DateWrap::operator=(const DateWrap& date1){
+    dateDestroy(date);
+    date = dateCopy(date1.date);
+    return *this;
 }
 
 int DateWrap::day(){
@@ -60,7 +65,7 @@ bool mtm::operator<(const DateWrap& date1, const DateWrap& date2){
 }
 
 ostream& mtm::operator<<(ostream& os, const DateWrap& date1){
-    os << date1.tday << "/" << date1.tmonth <<  "/" << date1.tyear;
+    os << date1.tday << SLASH << date1.tmonth <<  SLASH << date1.tyear;
     return os;
 }
 

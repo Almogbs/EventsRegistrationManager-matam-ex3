@@ -8,7 +8,7 @@ extern "C" {
 
 using std::ostream;
 
-
+#define SLASH "/"
 #define MIN_DAY 1
 #define MAX_DAY 30
 #define MIN_MONTH 1
@@ -23,6 +23,7 @@ namespace mtm {
             DateWrap(int in_day, int in_month, int in_year);
             DateWrap(const DateWrap& date1);
             ~DateWrap();
+            DateWrap& operator=(const DateWrap& date1);
             int day();
             int month();
             int year();
