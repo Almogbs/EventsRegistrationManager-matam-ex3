@@ -1,5 +1,5 @@
-#ifndef BASE_EVENT_
-#define BASE_EVENT_
+#ifndef BASE_EVENT_H_
+#define BASE_EVENT_H_
 #include "../partA/date_wrap.h"
 #include "../partA/exceptions.h"
 #include "linked_list.h"
@@ -31,9 +31,17 @@ namespace mtm{
         virtual BaseEvent* clone() = 0;
         bool participantListContains(int participant_num);
         bool isValidparticipant(int participant_num);
-        const DateWrap& getEventDate();
-        const string& getEventName();
+        const DateWrap& getEventDate() const;
+        const string& getEventName() const;
+        friend bool operator==(const BaseEvent& event1, const BaseEvent& event2);
+        friend bool operator<(const BaseEvent& event1, const BaseEvent& event2);
     };
+    bool operator==(const BaseEvent& event1, const BaseEvent& event2);         
+    bool operator<(const BaseEvent& event1, const BaseEvent& event2);
+    bool operator!=(const BaseEvent& event1, const BaseEvent& event2);
+    bool operator<=(const BaseEvent& event1, const BaseEvent& event2);
+    bool operator>=(const BaseEvent& event1, const BaseEvent& event2);
+    bool operator>(const BaseEvent& event1, const BaseEvent& event2);
 }
 
-#endif  /**  BASE_EVENT_  */
+#endif  /**  BASE_EVENT_H_  */

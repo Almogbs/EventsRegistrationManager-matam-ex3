@@ -1,5 +1,5 @@
-#ifndef CLOSED_EVENT_
-#define CLOSED_EVENT_
+#ifndef CLOSED_EVENT_H_
+#define CLOSED_EVENT_H_
 #include "../partA/date_wrap.h"
 #include "../partA/exceptions.h"
 #include "base_event.h"
@@ -20,4 +20,4 @@ namespace mtm {
         BaseEvent* clone();
     };
 }
-#endif  /**  CLOSED_EVENT_  */
+#endif  /**  CLOSED_EVENT_H_  */

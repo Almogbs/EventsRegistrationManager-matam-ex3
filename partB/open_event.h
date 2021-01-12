@@ -1,5 +1,5 @@
-#ifndef OPEN_EVENT_
-#define OPEN_EVENT_
+#ifndef OPEN_EVENT_H_
+#define OPEN_EVENT_H_
 #include "../partA/date_wrap.h"
 #include "../partA/exceptions.h"
 #include "base_event.h"
@@ -16,4 +16,4 @@ namespace mtm {
         BaseEvent* clone();
     };
 }
-#endif  /**  OPEN_EVENT_  */
+#endif  /**  OPEN_EVENT_H_  */

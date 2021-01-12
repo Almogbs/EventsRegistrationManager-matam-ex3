@@ -52,7 +52,9 @@ bool ClosedEvent::inviteeListContains(int invitee_num){
     return false;
 }
 
-BaseEvent* ClosedEvent::clone() {
+
+
+BaseEvent* ClosedEvent::clone(){
     ClosedEvent* new_closed_event = new ClosedEvent(getEventDate(), getEventName());
     delete new_closed_event->participant_list;
     delete new_closed_event->invitee_list;

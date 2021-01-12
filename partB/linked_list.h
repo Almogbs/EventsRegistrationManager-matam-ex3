@@ -3,7 +3,6 @@
 #include "../partA/exceptions.h"
 
 namespace mtm {
-
     template <class T>
     struct Node{
         Node<T>* next;

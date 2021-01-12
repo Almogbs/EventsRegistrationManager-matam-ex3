@@ -2,6 +2,8 @@
 #include "base_event.h"
 #include "open_event.h"
 #include "closed_event.h"
+#include "event_container.h"
+#include "festival.h"
 #include "custom_event.h"
 #include "../partA/exceptions.h"
 #include "../partA/date_wrap.h"
@@ -12,6 +14,8 @@ using mtm::BaseEvent;
 using mtm::ClosedEvent;
 using mtm::CustomEvent;
 using mtm::DateWrap;
+using mtm::EventContainer;
+using mtm::Festival;
 using namespace std;
 
 
@@ -146,6 +150,10 @@ int main() {
             cout << "RegistrationBlocked" << endl;
     }
 
+    cc1.printLong(std::cout);
+    cc1.printShort(std::cout);
+    cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << endl;
 
+    Festival festi(DateWrap(5,12,-235325));
     return 0;
 }

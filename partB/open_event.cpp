@@ -25,7 +25,7 @@ void OpenEvent::unregisterParticipant(int participant_num) {
     participant_list->removeElement(participant_num);
 }
 
-BaseEvent* OpenEvent::clone() {
+BaseEvent* OpenEvent::clone(){
     OpenEvent* new_open_event = new OpenEvent(getEventDate(), getEventName());
     delete new_open_event->participant_list;
     new_open_event->participant_list = new LinkedList<int>(*participant_list);

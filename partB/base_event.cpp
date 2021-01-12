@@ -8,6 +8,7 @@ BaseEvent::BaseEvent(const DateWrap& event_date, const string& event_name){
     date = new DateWrap(event_date);
     participant_list = new LinkedList<int>();
 }
+
 BaseEvent::~BaseEvent(){
     delete name;
     delete date;
@@ -37,12 +38,41 @@ bool BaseEvent::isValidparticipant(int participant_num){
     return true;
 }
 
-const DateWrap& BaseEvent::getEventDate(){
+const DateWrap& BaseEvent::getEventDate() const {
     return *date;
 }
 
-const string& BaseEvent::getEventName(){
+const string& BaseEvent::getEventName() const {
     return *name;
 }
+
+
+bool mtm::operator==(const BaseEvent& event1, const BaseEvent& event2){
+    return event1.getEventDate() == event2.getEventDate();
+}
+
+bool mtm::operator<(const BaseEvent& event1, const BaseEvent& event2){
+    if(event1.getEventDate() == event2.getEventDate()){
+        return event1.getEventName() <= event2.getEventName();
+    }
+    return event1.getEventDate() < event2.getEventDate();
+}
+
+bool mtm::operator!=(const BaseEvent& event1, const BaseEvent& event2){
+    return !(event1 == event2);
+}
+
+bool mtm::operator<=(const BaseEvent& event1, const BaseEvent& event2){
+    return event2 >= event1;
+}
+
+bool mtm::operator>=(const BaseEvent& event1, const BaseEvent& event2){
+    return !(event1 < event2);
+}
+
+bool mtm::operator>(const BaseEvent& event1, const BaseEvent& event2){
+    return event2 < event1;
+}
+
 
 
