@@ -1,5 +1,5 @@
-#ifndef LINKED_LIST_Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-#define LINKED_LIST_Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 #include "../partA/exceptions.h"
 
 namespace mtm {
@@ -14,9 +14,9 @@ namespace mtm {
     class LinkedList {
         Node<T>* head;
         Node<T>* iterator;
-        T* copy_function(const T& element);
     public:
-        LinkedList();
+        T* (*copy_function)(const T&);
+        LinkedList(T* (*new_copy_function)(const T&));
         LinkedList(const LinkedList<T>& list);
         ~LinkedList();
         int size();
@@ -32,25 +32,26 @@ using mtm::Node;
 using mtm::LinkedList;
 
 template<class T>
-LinkedList<T>::LinkedList(){
-    head = NULL ,iterator = NULL, copy_function = NULL;
+LinkedList<T>::LinkedList(T* (*new_copy_function)(const T&)){
+    head = NULL ,iterator = NULL, copy_function = new_copy_function;
 }
 
 template<class T>
 LinkedList<T>::LinkedList(const LinkedList<T>& list){
     if(list.head == NULL){
-        head = NULL;
+        head = NULL ,iterator = NULL, copy_function = list.copy_function;
         return;
     }
+    copy_function = list.copy_function;
     head = new Node<T>;
-    head->element = new T(*list.head->element);
+    head->element = copy_function(*list.head->element);
     head->next = NULL;
     Node<T>* to_add = list.head->next;
     Node<T>* temp_head_ptr = head;
 
     while(to_add){
         Node<T>* new_element = new Node<T>;
-        new_element->element = new T(*to_add->element);
+        new_element->element = copy_function(*to_add->element);
         new_element->next = NULL;
         temp_head_ptr->next = new_element;
         temp_head_ptr = temp_head_ptr->next;
@@ -99,13 +100,13 @@ template<class T>
 void LinkedList<T>::insert(const T& element){
     if(head == NULL){
         head = new Node<T>;
-        head->element = new T(element);
+        head->element = copy_function(element);
         head->next = NULL;
         return;
     }
     if(element < *head->element){
         Node<T>* new_head = new Node<T>;
-        new_head->element = new T(element);
+        new_head->element = copy_function(element);
         new_head->next = head;
         head = new_head;
         return;
@@ -115,7 +116,7 @@ void LinkedList<T>::insert(const T& element){
             temp = temp->next;
     }
     Node<T>* to_add = new Node<T>;
-    to_add->element = new T(element);
+   to_add->element = copy_function(element);
     to_add->next = temp->next;
     temp ->next = to_add;
     return;
@@ -176,4 +177,4 @@ T* LinkedList<T>::getNext(){
 
 
 
-#endif /**  LINKED_LIST_Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh  */
+#endif /**  LINKED_LIST_H  */
