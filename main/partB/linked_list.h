@@ -25,6 +25,7 @@ namespace mtm {
         void removeElement(const T& element);
         T* getFirst();
         T* getNext();
+        T* getElement(const T& element);
     };
 }
 
@@ -79,6 +80,22 @@ int LinkedList<T>::size(){
         counter++;
     }
     return counter;
+}
+
+template<class T>
+
+T* LinkedList<T>::getElement(const T& element){
+    if(head == NULL){
+        return NULL;
+    }
+    Node<T>* temp = head;
+    while(temp){
+        if(*temp->element == element){
+            return temp->element;
+        }
+        temp = temp->next;
+    }
+    return NULL;
 }
 
 template<class T>

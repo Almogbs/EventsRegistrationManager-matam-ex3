@@ -15,7 +15,7 @@ namespace mtm {
         DateWrap* date;
         string* name;
     public:
-        OneTimeEvent( const DateWrap& event_date, const string& event_name);
+        OneTimeEvent(const DateWrap& event_date, const string& event_name);
         ~OneTimeEvent();
         void add(const BaseEvent&);
     };
@@ -24,7 +24,7 @@ namespace mtm {
 using mtm::OneTimeEvent;
 
 template<class EventType>
-OneTimeEvent<EventType>::OneTimeEvent( const DateWrap& event_date, const string& event_name){
+OneTimeEvent<EventType>::OneTimeEvent(const DateWrap& event_date, const string& event_name) : EventContainer() {
     date = new DateWrap(event_date);
     name = new string(event_name);
     event_list->insert(EventType(*date, *name));

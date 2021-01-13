@@ -52,7 +52,8 @@ const string& BaseEvent::getEventName() const {
 
 
 bool mtm::operator==(const BaseEvent& event1, const BaseEvent& event2){
-    return event1.getEventDate() == event2.getEventDate();
+    return  event1.getEventDate() == event2.getEventDate() &&
+            event1.getEventName() == event2.getEventName();
 }
 
 bool mtm::operator<(const BaseEvent& event1, const BaseEvent& event2){

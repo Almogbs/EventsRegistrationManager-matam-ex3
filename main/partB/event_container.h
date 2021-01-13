@@ -28,14 +28,14 @@ namespace mtm{
             void setIteratorToEvent(BaseEvent& event);
             
             BaseEvent* current_event;
-            EventContainer* current_container;
+            const EventContainer* current_container;
         };
         EventContainer();
         virtual ~EventContainer();
         virtual void add(const BaseEvent&) = 0;
-        EventIterator& begin();
-        EventIterator& end();
-        void setIteratorNextEvent();
+        EventIterator& begin() const;
+        EventIterator& end() const;
+        void setIteratorNextEvent() const;
     protected:        
         LinkedList<BaseEvent>* event_list;
         EventIterator* dummy_iterator;

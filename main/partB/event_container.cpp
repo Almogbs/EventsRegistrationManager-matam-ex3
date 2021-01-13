@@ -1,5 +1,5 @@
 #include "event_container.h"
-
+//shuld find differnt why to use the iterator since it cant be changfed
 using mtm::EventContainer;
 
 EventContainer::EventIterator::EventIterator(){
@@ -56,7 +56,7 @@ EventContainer::~EventContainer(){
         delete iterator;
 }
 
-void EventContainer::setIteratorNextEvent(){
+void EventContainer::setIteratorNextEvent() const{
     bool is_next = false;
     if(!event_list)
     {
@@ -79,7 +79,7 @@ void EventContainer::EventIterator::setIteratorToEvent(BaseEvent& event){
     current_event = &event;
 }
 
-EventContainer::EventIterator& EventContainer::begin(){
+EventContainer::EventIterator& EventContainer::begin() const{
     if(event_list->size() == 0) {
         return *dummy_iterator;
     }
@@ -88,6 +88,6 @@ EventContainer::EventIterator& EventContainer::begin(){
     return *iterator;
 }
 
-EventContainer::EventIterator& EventContainer::end(){
+EventContainer::EventIterator& EventContainer::end() const{
     return *dummy_iterator;
 }
