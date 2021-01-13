@@ -24,7 +24,7 @@ typedef mtm::EventContainer::EventIterator Iter;
 void printEventsShort(mtm::EventContainer& events) {
     for (Iter iter = events.begin(); iter != events.end(); ++iter) {
         mtm::BaseEvent& event = *iter;
-        event.printShort(std::cout);
+        event.printLong(std::cout);
     }
 }
 
@@ -183,6 +183,26 @@ int main() {
         cout << "me on the other hand..." << endl;
     }
     printEventsShort(festi);
+
+    Festival festi2(DateWrap(1,1,-235325));
+    ClosedEvent ce4(DateWrap(1,1,-235325), "I am Date 1!");
+    OpenEvent oe3(DateWrap(1,1,-235325), "I am Date 2!");
+    festi2.add(ce4);
+    festi2.add(oe3);
+
+    EventContainer& ec = festi2; 
+    Iter it = ec.begin(); 
+    Iter it_end = ec.end();
+    BaseEvent& ev = *it;  
+    ev.printShort(cout);
+    (*it).printShort(cout); 
+    ++it;
+    (*it).printShort(cout); // print short description of 2nd event
+    std::cout << (it == it_end) << std::endl; // print "0" 
+    std::cout << (it != it_end) << std::endl; // print "1"
+    ++it;
+    std::cout << (it == it_end) << std::endl; // print "1" 
+    std::cout << (it != it_end) << std::endl; // print "0"
 
     delete oe2;
     delete ce2;

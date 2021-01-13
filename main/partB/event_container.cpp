@@ -22,11 +22,11 @@ BaseEvent& EventContainer::EventIterator::operator*(){
 }
 
 bool EventContainer::EventIterator::operator==(const EventIterator& ev){
-    return current_event == ev.current_event && current_container == ev.current_container;
+    return current_event == ev.current_event;
 }
 
 bool EventContainer::EventIterator::operator!=(const EventIterator& ev){
-    return current_event != ev.current_event || current_container != ev.current_container;
+    return current_event != ev.current_event;
 }
 
 EventContainer::EventIterator& EventContainer::EventIterator::operator++(){
@@ -48,13 +48,12 @@ EventContainer::EventContainer(){
 
 EventContainer::~EventContainer(){
     delete event_list;
-    if(dummy_iterator){
+   if(dummy_iterator == iterator){
         delete dummy_iterator;
-    }
-    if(iterator)
-    {
+        return;
+   }
+        delete dummy_iterator;
         delete iterator;
-    }
 }
 
 void EventContainer::setIteratorNextEvent(){
@@ -72,7 +71,6 @@ void EventContainer::setIteratorNextEvent(){
             is_next = true;
         }
     }
-    std::cout << "hi" << is_next << std::endl;
     delete iterator;
     iterator = dummy_iterator;
 }
@@ -82,6 +80,9 @@ void EventContainer::EventIterator::setIteratorToEvent(BaseEvent& event){
 }
 
 EventContainer::EventIterator& EventContainer::begin(){
+    if(event_list->size() == 0) {
+        return *dummy_iterator;
+    }
     iterator->setIteratorToEvent(*event_list->getFirst());
     iterator->current_container = this;
     return *iterator;

@@ -22,7 +22,7 @@ namespace mtm {
 using mtm::CustomEvent;
 
 template<class CanRegister>
-CustomEvent<CanRegister>::CustomEvent(const DateWrap& event_date, const string&event_name , const CanRegister& func) : 
+CustomEvent<CanRegister>::CustomEvent(const DateWrap& event_date, const string&event_name , const CanRegister& func) :
     BaseEvent(event_date, event_name){
     statement_function = func;
 }

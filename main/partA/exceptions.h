@@ -18,6 +18,8 @@ namespace mtm {
     class AlreadyInvited : public Exception {};
     class NotSupported : public Exception {};
     class DateMismatch : public Exception {};
+    class InvalidNumber : public Exception {};
+    class InvalidInterval : public Exception {};
     
 
     

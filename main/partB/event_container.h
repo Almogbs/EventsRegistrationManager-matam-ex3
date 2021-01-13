@@ -16,7 +16,6 @@ using mtm::LinkedList;
 namespace mtm{ 
     class EventContainer {
     public:
-
         class EventIterator {
         public:
             EventIterator();
@@ -30,17 +29,14 @@ namespace mtm{
             
             BaseEvent* current_event;
             EventContainer* current_container;
-
         };
-
         EventContainer();
         virtual ~EventContainer();
         virtual void add(const BaseEvent&) = 0;
         EventIterator& begin();
         EventIterator& end();
         void setIteratorNextEvent();
-
-    protected:
+    protected:        
         LinkedList<BaseEvent>* event_list;
         EventIterator* dummy_iterator;
         EventIterator* iterator; 
