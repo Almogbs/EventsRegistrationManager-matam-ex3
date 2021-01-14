@@ -8,11 +8,17 @@ DateWrap::DateWrap(int in_day, int in_month, int in_year){
     }
     tday = in_day, tmonth = in_month, tyear = in_year;
     date = dateCreate(tday, tmonth, tyear);
+    if(!date){
+        throw std::bad_alloc();
+    }
 }
 
 DateWrap::DateWrap(const DateWrap& date1){
     tday = date1.tday, tmonth = date1.tmonth, tyear = date1.tyear;
     date = dateCopy(date1.date);
+    if(!date){
+        throw std::bad_alloc();
+    }
 }
 
 DateWrap::~DateWrap(){
@@ -22,6 +28,9 @@ DateWrap::~DateWrap(){
 DateWrap& DateWrap::operator=(const DateWrap& date1){
     dateDestroy(date);
     date = dateCopy(date1.date);
+    if(!date){
+        throw std::bad_alloc();
+    }
     return *this;
 }
 

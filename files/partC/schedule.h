@@ -28,7 +28,6 @@ namespace mtm {
         void printMonthEvents(const int& month, const int& year) const;
         template<class T>
         void printSomeEvents(T predicate, bool verbose = false) const;
-        //void printSomeEvents(bool predicate(const BaseEvent&), bool verbose = false) const;
         void printEventDetails(const DateWrap&, const string&) const;
         bool haveCommonEvent(const EventContainer&);
     };
@@ -40,7 +39,8 @@ template<class T>
 void Schedule::printSomeEvents(T predicate, bool verbose) const{
      for(BaseEvent* ptr_iter = event_list->getFirst(); ptr_iter != NULL; ptr_iter = event_list->getNext()){
         if(predicate(*ptr_iter)){
-            verbose ? ptr_iter->printLong(cout) : ptr_iter->printShort(cout);   
+            verbose ? ptr_iter->printLong(cout) : ptr_iter->printShort(cout);  
+            cout << endl; 
         }
      }
 }

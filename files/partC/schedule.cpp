@@ -59,6 +59,7 @@ void Schedule::unregisterFromEvent(const DateWrap& date, const string& name, con
 void Schedule::printAllEvents() const{
     for(BaseEvent* ptr_iter = event_list->getFirst(); ptr_iter != NULL; ptr_iter = event_list->getNext()){
         ptr_iter->printShort(cout);
+        cout << endl;
     }
 }
 
@@ -67,18 +68,10 @@ void Schedule::printMonthEvents(const int& month, const int& year) const{
         DateWrap temp_date = ptr_iter->getEventDate();
         if(temp_date.month() == month && temp_date.year()== year){
             ptr_iter->printShort(cout);
+            cout << endl;
         }
     }    
 }
-/*
-void Schedule::printSomeEvents(bool predicate(const BaseEvent&), bool verbose = false) const{
-     for(BaseEvent* ptr_iter = event_list->getFirst(); ptr_iter != NULL; ptr_iter = event_list->getNext()){
-        if(predicate(*ptr_iter)){
-            verbose ? ptr_iter->printLong(cout) : ptr_iter->printShort(cout);
-        }
-    }       
-}
-*/
 
 void Schedule::printEventDetails(const DateWrap& date, const string& name) const{
     OpenEvent temp_event = OpenEvent(date, name);
@@ -87,4 +80,5 @@ void Schedule::printEventDetails(const DateWrap& date, const string& name) const
     }
     BaseEvent* ptr = event_list->getElement(temp_event);
     ptr->printLong(cout);
+    cout << endl;
 }

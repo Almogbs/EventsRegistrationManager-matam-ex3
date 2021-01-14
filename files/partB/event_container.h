@@ -26,7 +26,7 @@ namespace mtm{
             bool operator!=(const EventIterator&);
             EventIterator& operator++();
             void setIteratorToEvent(BaseEvent& event);
-            
+            EventIterator* copyIterator();
             BaseEvent* current_event;
             const EventContainer* current_container;
         };
@@ -35,11 +35,10 @@ namespace mtm{
         virtual void add(const BaseEvent&) = 0;
         EventIterator& begin() const;
         EventIterator& end() const;
-        void setIteratorNextEvent() const;
     protected:        
         LinkedList<BaseEvent>* event_list;
         EventIterator* dummy_iterator;
-        EventIterator* iterator; 
+        EventIterator* inner_iterator; 
     };
 }
 
