@@ -29,7 +29,16 @@ namespace mtm {
         template<class T>
         void printSomeEvents(T predicate, bool verbose = false) const;
         void printEventDetails(const DateWrap&, const string&) const;
-        bool haveCommonEvent(const EventContainer&);
+        
+        /**
+        * haveCommonEvent: Checks the existence of common events with the specified event container.
+        *
+        * @param events - the target event container.
+        * @return
+        * 	true - if there is at least one common event.
+        *   Otherwise, returns false.
+        */ 
+        bool haveCommonEvent(const EventContainer& events);
     };
 }
 

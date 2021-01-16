@@ -6,17 +6,19 @@ namespace mtm {
     /** Parent Exception */
     class Exception : public std::exception {};
 
-    /** Exceptions for DateWrap */
+    /** Exceptions for partA */
     class InvalidDate : public Exception {};
     class NegativeDays : public Exception {};
 
-    /** Exceptions for BaseEvent */
+    /** Exceptions for partB */
     class InvalidStudent : public Exception {};
     class AlreadyRegistered : public Exception {};
     class RegistrationBlocked : public Exception {};
     class NotRegistered : public Exception {};
     class AlreadyInvited : public Exception {};
     class NotSupported : public Exception {};
+
+    /** Exceptions for partC */
     class DateMismatch : public Exception {};
     class InvalidNumber : public Exception {};
     class InvalidInterval : public Exception {};

@@ -47,11 +47,12 @@ EventContainer::EventIterator& EventContainer::EventIterator::operator++(){
     return *current_container->dummy_iterator;
 }
 
+/*
 EventContainer::EventIterator* EventContainer::EventIterator::copyIterator(){
     ++(*current_container->inner_iterator);
     return current_container->inner_iterator;
 }
-
+*/
 
 EventContainer::EventContainer(){
     event_list = new LinkedList<BaseEvent>(mtm::copyEvent);

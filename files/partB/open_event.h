@@ -16,4 +16,5 @@ namespace mtm {
         BaseEvent* clone() const;
     };
 }
+
 #endif  /**  OPEN_EVENT_H_  */

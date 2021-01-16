@@ -1,8 +1,6 @@
 #include "closed_event.h"
 
-
 using mtm::ClosedEvent;
-
 
 ClosedEvent::ClosedEvent(const DateWrap& event_date, const string& event_name) : BaseEvent(event_date, event_name) {
     invitee_list = new LinkedList<int>(copyInt);
@@ -51,8 +49,6 @@ bool ClosedEvent::inviteeListContains(int invitee_num){
     }
     return false;
 }
-
-
 
 BaseEvent* ClosedEvent::clone() const{
     ClosedEvent* new_closed_event = new ClosedEvent(getEventDate(), getEventName());

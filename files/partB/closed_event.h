@@ -16,8 +16,18 @@ namespace mtm {
         void addInvitee(int invitee_num);
         void registerParticipant(int participant_num);
         void unregisterParticipant(int participant_num);
+
+        /**
+        * inviteeListContains: Checks if the invitee is in the invitee list.
+        *
+        * @param invitee_num - the number of the invitee.
+        * @return
+        * 	ture - if the invitee is already in the invitee list.
+        * 	Otherwise, returns false.
+        */
         bool inviteeListContains(int invitee_num);
         BaseEvent* clone() const;
     };
 }
+
 #endif  /**  CLOSED_EVENT_H_  */

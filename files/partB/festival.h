@@ -6,13 +6,11 @@
 #include "base_event.h"
 #include "event_container.h"
 
-
 using std::string;
 using std::ostream;
 using mtm::DateWrap;
 using mtm::LinkedList;
 using mtm::EventContainer;
-
 
 namespace mtm{ 
     class Festival : public EventContainer {

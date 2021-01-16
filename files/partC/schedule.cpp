@@ -4,7 +4,6 @@ using mtm::Schedule;
 
 typedef mtm::EventContainer::EventIterator Iterator;
 
-
 bool Schedule::haveCommonEvent(const EventContainer& events){
     for (Iterator iter = events.begin(); iter != events.end(); ++iter) {
         mtm::BaseEvent& event = *iter;
@@ -14,7 +13,6 @@ bool Schedule::haveCommonEvent(const EventContainer& events){
     }
     return false;
 }
-
 
 Schedule::Schedule(){
     event_list = new LinkedList<BaseEvent>(copyEvent);
@@ -45,7 +43,6 @@ void Schedule::registerToEvent(const DateWrap& date, const string& name, const i
     BaseEvent* ptr = event_list->getElement(temp_event);
     ptr->registerParticipant(participant_num);
 }
-
 
 void Schedule::unregisterFromEvent(const DateWrap& date, const string& name, const int& participant_num){
     if(participant_num < MIN_STUDENT_ID || participant_num > MAX_STUDENT_ID){

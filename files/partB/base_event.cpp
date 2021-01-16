@@ -3,14 +3,14 @@
 using mtm::BaseEvent;
 using std::endl;      
 
-int* copyInt(const int& num){
+int* mtm::copyInt(const int& num){
     return new int(num);
 }
 
 BaseEvent::BaseEvent(const DateWrap& event_date, const string& event_name){
     name = new string(event_name);
     date = new DateWrap(event_date);
-    participant_list = new LinkedList<int>(copyInt);
+    participant_list = new LinkedList<int>(mtm::copyInt);
 }
 
 BaseEvent::~BaseEvent(){
@@ -21,6 +21,7 @@ BaseEvent::~BaseEvent(){
 void BaseEvent::printShort(ostream& os){
     os << *name << SEPERETOR << *date << endl;
 }
+
 void BaseEvent::printLong(ostream& os){
     os << *name << SEPERETOR << *date << endl;
     LL_FOREACH(int*, iter, participant_list){
@@ -49,7 +50,6 @@ const DateWrap& BaseEvent::getEventDate() const {
 const string& BaseEvent::getEventName() const {
     return *name;
 }
-
 
 bool mtm::operator==(const BaseEvent& event1, const BaseEvent& event2){
     return  event1.getEventDate() == event2.getEventDate() &&

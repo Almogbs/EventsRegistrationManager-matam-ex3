@@ -27,7 +27,6 @@ CustomEvent<CanRegister>::CustomEvent(const DateWrap& event_date, const string&e
     statement_function = func;
 }
 
-
 template<class CanRegister>
 void CustomEvent<CanRegister>::registerParticipant(int participant_num){
     if(!isValidparticipant(participant_num)){
@@ -60,6 +59,5 @@ BaseEvent* CustomEvent<CanRegister>::clone() const{
     new_custom_event->participant_list = new LinkedList<int>(*participant_list);
     return new_custom_event;
 }
-
 
 #endif  /**  CUSTOM_EVENT_H_  */

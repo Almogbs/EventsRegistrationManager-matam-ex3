@@ -1,6 +1,5 @@
 #include "open_event.h"
 
-
 using mtm::OpenEvent;
 
 OpenEvent::OpenEvent(const DateWrap& event_date, const string& event_name) : BaseEvent(event_date, event_name) {}

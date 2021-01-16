@@ -2,13 +2,29 @@
 #define LINKED_LIST_H
 #include "../partA/exceptions.h"
 
+
+/**
+* Generic Linked List
+*
+* Implements a Linked List of generic type.
+*
+* The following methods are available:
+*   size		                - Returns the size of the list
+*   contains	                - returns whether or not an element exists inside the list.
+*   insert	                    - Insert an element to the list.
+*   removeElement		        - Removes specified element from the list
+*   GetFirst	                - Sets the internal iterator to the first element in the list and returns it
+*   GetNext		                - Advances the internal iterator to the next key and returns it.
+*	getElement		            - Returns a pointer to same element within the list
+* 	LL_FOREACH	                - A macro for iterating over the list's elements.
+*/
+
 namespace mtm {
     template <class T>
     struct Node{
         Node<T>* next;
         T* element;
     };
-
 
     template<class T>
     class LinkedList {
@@ -71,6 +87,12 @@ LinkedList<T>::~LinkedList(){
     }
 }
 
+/**
+* size: Returns the number of elements in a linked list.
+*
+* @return
+* 	the number of elements in list.
+*/
 template<class T>
 int LinkedList<T>::size(){
     Node<T>* temp = head;
@@ -82,8 +104,15 @@ int LinkedList<T>::size(){
     return counter;
 }
 
+/**
+* getElement: Returns a pointer to same element within the list.
+*
+* @param element - the target element.
+* @return
+* 	NULL - if the element was not found in the list or if the list is empty.
+*   Otherwise, pointer to the element.
+*/
 template<class T>
-
 T* LinkedList<T>::getElement(const T& element){
     if(head == NULL){
         return NULL;
@@ -98,6 +127,14 @@ T* LinkedList<T>::getElement(const T& element){
     return NULL;
 }
 
+/**
+* contains: Checks if an element exists in the linked list.
+*
+* @param element - the target element.
+* @return
+* 	false - if the key element was not found.
+* 	Otherwise, returns true.
+*/
 template<class T>
 bool LinkedList<T>::contains(const T& element){
     if(head == NULL){
@@ -113,6 +150,11 @@ bool LinkedList<T>::contains(const T& element){
     return false;
 }
 
+/**
+*   insert: insert the element to the linked list, in the right place.
+*
+* @param element - the target element
+*/
 template<class T>
 void LinkedList<T>::insert(const T& element){
     if(head == NULL){
@@ -133,12 +175,17 @@ void LinkedList<T>::insert(const T& element){
             temp = temp->next;
     }
     Node<T>* to_add = new Node<T>;
-   to_add->element = copy_function(element);
+    to_add->element = copy_function(element);
     to_add->next = temp->next;
     temp ->next = to_add;
     return;
 }
 
+/**
+*   removeElement: Removes element from the linked list which have its value equal to element.
+*
+* @param element - the target element
+*/
 template<class T>
 void LinkedList<T>::removeElement(const T& element){
     Node<T>* temp = head;
@@ -167,6 +214,13 @@ void LinkedList<T>::removeElement(const T& element){
     return;
 }
 
+/**
+*	getFirst: set the list iterator to the first element and returns it.
+*
+* @return
+* 	NULL if reached the end of the list(empty list)
+* 	Otherwise, The first element on the linked list
+*/
 template<class T>
 T* LinkedList<T>::getFirst(){
     if(!head){
@@ -176,6 +230,13 @@ T* LinkedList<T>::getFirst(){
     return head->element;
 }
 
+/**
+*	getNext: Advances the list iterator to the next element and returns it.
+*
+* @return
+* 	NULL if reached the end of the list
+* 	Otherwise, The next element on the linked list
+*/
 template<class T>
 T* LinkedList<T>::getNext(){
     if(!iterator->next){
@@ -185,13 +246,13 @@ T* LinkedList<T>::getNext(){
     return iterator->element;
 }
 
+/**
+* Macro for iterating over a linked list.
+* Declares a new iterator for the loop.
+*/
 #define LL_FOREACH(type, iterator, listname) \
     for(type iterator = listname->getFirst() ; \
         iterator ;\
         iterator = listname->getNext())
-
-
-
-
 
 #endif /**  LINKED_LIST_H  */

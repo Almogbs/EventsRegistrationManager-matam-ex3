@@ -41,6 +41,4 @@ void OneTimeEvent<EventType>::add(const BaseEvent&){
     throw mtm::NotSupported();
 }
 
-
-
 #endif  /**  ONE_TIME_EVENT_H_  */

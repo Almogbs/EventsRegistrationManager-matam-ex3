@@ -29,10 +29,10 @@ using mtm::RecurringEvent;
 template<class EventType>
 RecurringEvent<EventType>::RecurringEvent(  const DateWrap& first_date, const string& event_name,
                                             const int& num_occurrences, const int& interval_days) : EventContainer() {
-    if(num_occurrences < 0){
+    if(num_occurrences <= 0){
         throw mtm::InvalidNumber();
     }
-    if(interval_days < 0 ){
+    if(interval_days <= 0 ){
         throw mtm::InvalidInterval();
     }
     init_date = new DateWrap(first_date);

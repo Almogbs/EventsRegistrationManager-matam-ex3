@@ -44,6 +44,16 @@ namespace mtm {
     bool operator<=(const DateWrap& date1, const DateWrap& date2);
     bool operator>=(const DateWrap& date1, const DateWrap& date2);
     bool operator>(const DateWrap& date1, const DateWrap& date2);
+    /**
+    * isValidDate: Checks if date parameters are valid.
+    *
+    * @param day - the day of the date.
+    * @param month - the month of the date.
+    * @param year - the year of the date.
+    * @return
+    * 	true - if the parameters represent valid date.
+    * 	Otherwise, returns false.
+    */
     bool isValidDate(int tday, int tmonth, int tyear);
 }
 #endif /**   DATE_WRAP_H_   */

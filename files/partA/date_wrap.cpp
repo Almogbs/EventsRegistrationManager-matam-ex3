@@ -94,7 +94,6 @@ DateWrap mtm::operator++(DateWrap& date1, int){
     return date2;
 }
 
-
 bool mtm::operator!=(const DateWrap& date1, const DateWrap& date2){
     return !(date1 == date2);
 }

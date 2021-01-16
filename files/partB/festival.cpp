@@ -1,7 +1,7 @@
 #include "festival.h"
 
 using mtm::Festival;
-Festival::Festival(const DateWrap& date) : EventContainer() {
+Festival::Festival(const DateWrap& date) : EventContainer(){
     festival_date = new DateWrap(date);
 }
 
