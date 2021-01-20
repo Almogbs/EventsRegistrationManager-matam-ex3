@@ -26,11 +26,14 @@ DateWrap::~DateWrap(){
 }
 
 DateWrap& DateWrap::operator=(const DateWrap& date1){
-    dateDestroy(date);
-    date = dateCopy(date1.date);
-    if(!date){
+    Date temp = dateCopy(date1.date);
+    if(!temp){
         throw std::bad_alloc();
     }
+    dateDestroy(date);
+    date = temp;
+    int *pday = &tday, *pmonth = &tmonth, *pyear = &tyear;
+    dateGet(temp, pday, pmonth, pyear);
     return *this;
 }
 
